@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.text.ParseException;
 
+import static dev.dhg.apimidias.util.FileUtil.getExtensaoArquivo;
+
 @Service
 public class MetadataServiceImpl implements MetadataService {
 
@@ -30,7 +32,7 @@ public class MetadataServiceImpl implements MetadataService {
 
 	private MetadataReader getReader(String nomeArquivo) {
 		MetadataReader reader = null;
-		String extensaoArquivo = nomeArquivo.replaceAll(".*\\.", "").toLowerCase();
+		String extensaoArquivo = getExtensaoArquivo(nomeArquivo);
 		switch (extensaoArquivo) {
 			case "mp4":
 				reader = mp4Reader;
