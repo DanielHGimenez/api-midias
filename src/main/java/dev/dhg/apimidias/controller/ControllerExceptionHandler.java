@@ -3,6 +3,7 @@ package dev.dhg.apimidias.controller;
 import dev.dhg.apimidias.DTO.ErroResponse;
 import dev.dhg.apimidias.infrastructure.exception.CampoInvalidoException;
 import dev.dhg.apimidias.infrastructure.exception.ErroProcessamentoMediaException;
+import dev.dhg.apimidias.infrastructure.exception.MediaNaoEncontradaException;
 import dev.dhg.apimidias.infrastructure.exception.MediaNaoSuportadaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ControllerExceptionHandler {
             Optional.of (
                 ErroResponse.builder()
                     .mensagem("O formato de media enviada n\u00E3o \u00E9 suportada")
-                    .build()
+                .build()
             )
         );
     }
@@ -42,7 +43,7 @@ public class ControllerExceptionHandler {
             Optional.of (
                 ErroResponse.builder()
                     .mensagem("Um erro inesperado aconteceu")
-                    .build()
+                .build()
             )
         );
     }
@@ -57,7 +58,7 @@ public class ControllerExceptionHandler {
             Optional.of (
                 ErroResponse.builder()
                     .mensagem(String.format("O parametro \"%s\" n\u00E3o pode ser nulo", ex.getParameterName()))
-                    .build()
+                .build()
             )
         );
     }
@@ -79,7 +80,7 @@ public class ControllerExceptionHandler {
             Optional.of (
                 ErroResponse.builder()
                     .mensagem(erros)
-                    .build()
+                .build()
             )
         );
     }
@@ -92,7 +93,7 @@ public class ControllerExceptionHandler {
             Optional.of (
                 ErroResponse.builder()
                     .mensagem(ex.getMessage())
-                    .build()
+                .build()
             )
         );
     }
@@ -112,8 +113,21 @@ public class ControllerExceptionHandler {
                                 ex.getRequestPartName()
                             )
                         )
-                        .build()
+                    .build()
                 )
+        );
+    }
+
+    @ExceptionHandler(MediaNaoEncontradaException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ResponseEntity<ErroResponse> handleMediaNaoEncontradaException(MediaNaoEncontradaException ex) {
+        return ResponseEntity.of (
+            Optional.of (
+                ErroResponse.builder()
+                    .mensagem ("Media n\u00E3o encontrada")
+                .build()
+            )
         );
     }
 
