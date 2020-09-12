@@ -21,8 +21,11 @@ public class MetadataMP4Reader implements MetadataReader {
 		Metadata metadata = ImageMetadataReader.readMetadata(arquivo);
 		Mp4Directory directory = metadata.getFirstDirectoryOfType(Mp4Directory.class);
 		int duracao = directory.getInt(Mp4Directory.TAG_DURATION);
-		duracao /= 1000; // removendo milesimos de segundo
-		return duracao;
+		return transformarEmSegundos(duracao);
+	}
+
+	private int transformarEmSegundos(int duracaoBruta) {
+		return (int) Math.round(duracaoBruta / 1000.0);
 	}
 
 }
