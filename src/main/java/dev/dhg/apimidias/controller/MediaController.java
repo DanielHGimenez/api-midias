@@ -57,9 +57,9 @@ public class MediaController {
 
     @GetMapping
     public ResponseEntity<List<Media>> listar(
-            @RequestParam(value = "deletedOnly", required = false, defaultValue = "false") Boolean deletedOnly
+            @RequestParam(value = "activeOnly", required = false, defaultValue = "false") Boolean activeOnly
     ) {
-        return ResponseEntity.ok(service.listar(deletedOnly));
+        return ResponseEntity.ok(service.listar(activeOnly));
     }
 
     @GetMapping("/{id}")
@@ -93,6 +93,7 @@ public class MediaController {
         }
 
         Media media = service.atualizar(id, nome, arquivo);
+        media.setId(null);
 
         return ResponseEntity.ok(media);
     }

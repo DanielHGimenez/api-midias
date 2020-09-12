@@ -110,7 +110,7 @@ public class MediaServiceImpl implements MediaService {
         List<Media> todasMedias;
 
         if (deletedOnly)
-            todasMedias = repository.findByDeleted(true);
+            todasMedias = repository.findByDeleted(false);
         else
             todasMedias = repository.findAll();
 
