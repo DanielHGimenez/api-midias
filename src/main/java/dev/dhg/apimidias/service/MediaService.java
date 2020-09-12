@@ -11,5 +11,8 @@ public interface MediaService {
 	Media criar(String nome, MultipartFile arquivo);
 	List<Media> listar(Boolean deletedOnly);
 	Optional<Media> getMediaEspecifica(Integer id);
+	Media atualizar(Integer id, String nome);
+	Media atualizar(Integer id, MultipartFile arquivo);
+	Media atualizar(Integer id, String nome, MultipartFile arquivo);
 
 }

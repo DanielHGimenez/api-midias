@@ -31,6 +31,8 @@ public class Media {
 	@Length(max = 512)
 	private String nome;
 
+	private String nomeArquivo;
+
 	@Length(max = 512)
 	private String URL;
 

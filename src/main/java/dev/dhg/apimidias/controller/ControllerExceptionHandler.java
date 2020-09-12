@@ -5,6 +5,7 @@ import dev.dhg.apimidias.infrastructure.exception.CampoInvalidoException;
 import dev.dhg.apimidias.infrastructure.exception.ErroProcessamentoMediaException;
 import dev.dhg.apimidias.infrastructure.exception.MediaNaoEncontradaException;
 import dev.dhg.apimidias.infrastructure.exception.MediaNaoSuportadaException;
+import dev.dhg.apimidias.infrastructure.exception.NenhumParametroPassadoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -126,6 +127,19 @@ public class ControllerExceptionHandler {
             Optional.of (
                 ErroResponse.builder()
                     .mensagem ("Media n\u00E3o encontrada")
+                .build()
+            )
+        );
+    }
+
+    @ExceptionHandler(NenhumParametroPassadoException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ResponseEntity<ErroResponse> handleNenhumParametroPassadoException(NenhumParametroPassadoException ex) {
+        return ResponseEntity.of (
+            Optional.of (
+                ErroResponse.builder()
+                    .mensagem ("Nenhum parametro foi passado para sofrer alteraç\u00E3o")
                 .build()
             )
         );
