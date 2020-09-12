@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class ControllerExceptionHandler {
         return ResponseEntity.of (
             Optional.of (
                 ErroResponse.builder()
-                    .mensagem(String.format("O parametro %s n\u00E3o pode ser nulo", ex.getParameterName()))
+                    .mensagem(String.format("O parametro \"%s\" n\u00E3o pode ser nulo", ex.getParameterName()))
                     .build()
             )
         );
@@ -93,6 +94,26 @@ public class ControllerExceptionHandler {
                     .mensagem(ex.getMessage())
                     .build()
             )
+        );
+    }
+
+    @ExceptionHandler(MissingServletRequestPartException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ResponseEntity<ErroResponse> handleMissingServletRequestPartException(
+            MissingServletRequestPartException ex
+    ) {
+        return ResponseEntity.of (
+                Optional.of (
+                        ErroResponse.builder()
+                                .mensagem (
+                                    String.format (
+                                        "O parametro \"%s\" n\u00E3o pode ser nulo",
+                                        ex.getRequestPartName()
+                                    )
+                                )
+                                .build()
+                )
         );
     }
 
