@@ -22,10 +22,21 @@ public class MetadataAVIReader implements MetadataReader {
         Metadata metadata = ImageMetadataReader.readMetadata(arquivo);
         AviDirectory directory = metadata.getFirstDirectoryOfType(AviDirectory.class);
         String[] valores = directory.getString(AviDirectory.TAG_DURATION).split(":");
-        int duracao = Integer.parseInt(valores[0]) * 3600 // conversão de horas para segundos
-                + Integer.parseInt(valores[1]) * 60 // conversão de minutos para segundos
-                + Integer.parseInt(valores[2]); // obtendo valor de segundos
-        return duracao;
+        return transformarEmSegundos(valores);
+    }
+
+    private int transformarEmSegundos(String[] valoresBrutos) {
+        return    converterHoraParaSegundos(Integer.parseInt(valoresBrutos[0]))
+                + converterMinutosParaSegundos(Integer.parseInt(valoresBrutos[1]))
+                + Integer.parseInt(valoresBrutos[2]);
+    }
+
+    private int converterHoraParaSegundos(int horas) {
+        return horas * 3600;
+    }
+
+    private int converterMinutosParaSegundos(int minutos) {
+        return minutos * 60;
     }
 
 }
