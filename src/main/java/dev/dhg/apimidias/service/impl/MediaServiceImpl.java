@@ -181,6 +181,19 @@ public class MediaServiceImpl implements MediaService {
         return media;
     }
 
+    @Override
+    public Media deletar(Integer id) {
+        Optional<Media> optionalMedia = repository.findById(id);
+        validarExistenciaMedia(optionalMedia);
+
+        Media media = optionalMedia.get();
+        media.setDeleted(true);
+
+        media = repository.save(media);
+
+        return media;
+    }
+
     private void validarExistenciaMedia(Optional<Media> optionalMedia) {
         if (!optionalMedia.isPresent())
             throw new MediaNaoEncontradaException();

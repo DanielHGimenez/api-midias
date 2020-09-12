@@ -14,5 +14,6 @@ public interface MediaService {
 	Media atualizar(Integer id, String nome);
 	Media atualizar(Integer id, MultipartFile arquivo);
 	Media atualizar(Integer id, String nome, MultipartFile arquivo);
+	Media deletar(Integer id);
 
 }
