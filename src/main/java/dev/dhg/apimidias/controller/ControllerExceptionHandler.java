@@ -105,14 +105,14 @@ public class ControllerExceptionHandler {
     ) {
         return ResponseEntity.of (
                 Optional.of (
-                        ErroResponse.builder()
-                                .mensagem (
-                                    String.format (
-                                        "O parametro \"%s\" n\u00E3o pode ser nulo",
-                                        ex.getRequestPartName()
-                                    )
-                                )
-                                .build()
+                    ErroResponse.builder()
+                        .mensagem (
+                            String.format (
+                                "O parametro \"%s\" n\u00E3o pode ser nulo",
+                                ex.getRequestPartName()
+                            )
+                        )
+                        .build()
                 )
         );
     }
