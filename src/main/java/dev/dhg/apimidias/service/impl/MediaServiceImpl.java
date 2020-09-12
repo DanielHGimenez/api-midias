@@ -41,7 +41,7 @@ public class MediaServiceImpl implements MediaService {
     @Autowired
     private Storage storage;
 
-    @Value("${bucket.nome}")
+    @Value("${gcp.storage.bucket.nome}")
     private String nomeBucket;
 
     @Override
