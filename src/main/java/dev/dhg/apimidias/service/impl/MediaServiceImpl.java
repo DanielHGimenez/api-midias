@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static dev.dhg.apimidias.util.FileUtil.getExtensaoArquivo;
@@ -110,4 +111,10 @@ public class MediaServiceImpl implements MediaService {
 
         return todasMedias;
     }
-
+
+    @Override
+    public Optional<Media> getMediaEspecifica(Integer id) {
+        return repository.findById(id);
+    }
+
+}
