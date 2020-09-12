@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import java.util.List;
 import java.util.UUID;
 
 import static dev.dhg.apimidias.util.FileUtil.getExtensaoArquivo;
@@ -97,4 +98,16 @@ public class MediaServiceImpl implements MediaService {
         return media;
     }
 
-}
+    @Override
+    public List<Media> listar(Boolean deletedOnly) {
+
+        List<Media> todasMedias;
+
+        if (deletedOnly)
+            todasMedias = repository.findByDeleted(true);
+        else
+            todasMedias = repository.findAll();
+
+        return todasMedias;
+    }
+
