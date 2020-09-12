@@ -1,29 +1,20 @@
 package dev.dhg.apimidias.controller;
 
 import dev.dhg.apimidias.DTO.CriacaoMediaResponse;
-import dev.dhg.apimidias.DTO.ErroResponse;
 import dev.dhg.apimidias.infrastructure.exception.CampoInvalidoException;
-import dev.dhg.apimidias.infrastructure.exception.ErroProcessamentoMediaException;
 import dev.dhg.apimidias.infrastructure.exception.MediaNaoSuportadaException;
 import dev.dhg.apimidias.model.Media;
 import dev.dhg.apimidias.service.MediaService;
-import org.hibernate.validator.constraints.Length;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.IOException;
 
 import static dev.dhg.apimidias.util.FileUtil.getExtensaoArquivo;
