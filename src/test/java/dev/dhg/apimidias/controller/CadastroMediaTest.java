@@ -29,7 +29,7 @@ import static dev.dhg.apimidias.DadosTeste.montarRequisicaoCadastrarMedia;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ActiveProfiles("test")
-public class CadastrarMediaTest {
+public class CadastroMediaTest {
 
     @LocalServerPort
     private int porta;
