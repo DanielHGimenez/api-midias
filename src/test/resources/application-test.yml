@@ -16,5 +16,5 @@ spring:
 gcp:
   storage:
     bucket:
-      nome: arquivos-medias-test
+      nome: # preencha com o nome do bucket de teste da GCP storage
 
