@@ -4,7 +4,7 @@ import dev.dhg.apimidias.DTO.ErroResponse;
 import dev.dhg.apimidias.infrastructure.exception.CampoInvalidoException;
 import dev.dhg.apimidias.infrastructure.exception.ErroProcessamentoMediaException;
 import dev.dhg.apimidias.infrastructure.exception.MediaNaoEncontradaException;
-import dev.dhg.apimidias.infrastructure.exception.MediaNaoSuportadaException;
+import dev.dhg.apimidias.infrastructure.exception.FormatoMediaNaoSuportadaException;
 import dev.dhg.apimidias.infrastructure.exception.NenhumParametroPassadoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +23,14 @@ import java.util.Optional;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(MediaNaoSuportadaException.class)
+    @ExceptionHandler(FormatoMediaNaoSuportadaException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ResponseEntity<ErroResponse> handleMediaNaoSuportadaException(MediaNaoSuportadaException ex) {
+    public ResponseEntity<ErroResponse> handleFormatoMediaNaoSuportadaException(FormatoMediaNaoSuportadaException ex) {
         return ResponseEntity.of (
             Optional.of (
                 ErroResponse.builder()
-                    .mensagem("O formato de media enviada n\u00E3o \u00E9 suportada")
+                    .mensagem("O formato de media enviada n\u00E3o \u00E9 suportado")
                 .build()
             )
         );

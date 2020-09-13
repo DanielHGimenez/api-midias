@@ -37,9 +37,6 @@ public class CadastrarMediaTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-	@Autowired
-    private MediaController controller;
-
     @Value("classpath:static/video.mp4")
     private Resource arquivoMP4;
 
@@ -128,7 +125,7 @@ public class CadastrarMediaTest {
                 restTemplate.postForEntity(getUrlRequisicao(porta, "/medias"), request, ErroResponse.class);
 
         Assertions.assertEquals(
-                "O formato de media enviada n\u00E3o \u00E9 suportada",
+                "O formato de media enviada n\u00E3o \u00E9 suportado",
                 response.getBody().getMensagem()
         );
     }

@@ -3,7 +3,7 @@ package dev.dhg.apimidias.controller;
 import dev.dhg.apimidias.DTO.CriacaoMediaResponse;
 import dev.dhg.apimidias.infrastructure.exception.CampoInvalidoException;
 import dev.dhg.apimidias.infrastructure.exception.MediaNaoEncontradaException;
-import dev.dhg.apimidias.infrastructure.exception.MediaNaoSuportadaException;
+import dev.dhg.apimidias.infrastructure.exception.FormatoMediaNaoSuportadaException;
 import dev.dhg.apimidias.infrastructure.exception.NenhumParametroPassadoException;
 import dev.dhg.apimidias.model.Media;
 import dev.dhg.apimidias.service.MediaService;
@@ -114,7 +114,7 @@ public class MediaController {
 
     private void validarMedia(String extensaoArquivo) {
         if (!"mp4".equals(extensaoArquivo) && !"avi".equals(extensaoArquivo))
-            throw new MediaNaoSuportadaException("O formato de media enviada n\u00E3o \u00E9 suportada");
+            throw new FormatoMediaNaoSuportadaException();
     }
 
     private void validarExistenciaParametros(MultipartFile arquivo, String nome) {
