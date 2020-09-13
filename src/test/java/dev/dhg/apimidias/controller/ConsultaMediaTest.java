@@ -7,6 +7,7 @@ import dev.dhg.apimidias.DTO.ErroResponse;
 import dev.dhg.apimidias.model.Media;
 import dev.dhg.apimidias.service.MediaService;
 import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -158,7 +159,7 @@ public class ConsultaMediaTest {
         Assertions.assertEquals("Media n\u00E3o encontrada", responseMediaEspecifica.getBody().getMensagem());
     }
 
-    @AfterEach
+    @AfterAll
     public void deletarArquivosBucketTeste() {
         Page<Blob> blobs = storage.list(nomeBucketTeste, Storage.BlobListOption.currentDirectory());
         blobs.iterateAll().forEach(blob -> {
