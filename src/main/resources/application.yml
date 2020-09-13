@@ -1,0 +1,25 @@
+database:
+  endereco: # preencha com o endereco do banco de dados MySQL
+  porta: # preencha com a porta do banco de dados
+
+spring:
+  datasource:
+    url: jdbc:mysql://${database.endereco}:${database.porta}/media?serverTimezone=UTC
+    username: # preencha com o usuario do banco de dados
+    password: # preencha com o senha do banco de dados
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+gcp:
+  storage:
+    bucket:
+      nome: # preencha com o nome do bucket da GCP storage
+
